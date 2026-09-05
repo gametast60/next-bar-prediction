@@ -1,0 +1,20 @@
+# Large market data files
+*.csv
+*.csv.gz
+*.parquet
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Local Streamlit/runtime files
+.streamlit/secrets.toml
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/

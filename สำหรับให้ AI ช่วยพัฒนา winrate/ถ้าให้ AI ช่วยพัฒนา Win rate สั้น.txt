@@ -1,0 +1,18 @@
+ช่วยพัฒนา win rate ของระบบทำนายแท่ง 5 นาทีถัดไป
+
+ให้ตรวจและแก้เฉพาะ:
+- next_bar_prediction_engine.py
+- footprint_ml_pipeline.py
+
+ใช้ backtest จากไฟล์:
+- data/XAUUSD_ticks_....csv
+
+เป้าหมาย:
+- ทาย UP/DOWN ของแท่งถัดไป
+- หมดอายุ 5 นาที
+- ห้ามใช้ข้อมูลอนาคต
+- ใช้ walk-forward validation
+- เปรียบเทียบผลก่อนและหลังแก้
+- รายงานจำนวน signal, ถูก, ผิด, win rate, coverage และ drawdown
+- ห้ามทำให้ผลดีขึ้นด้วยการ overfit ชุดข้อมูลเดียว
+- UI ไม่ต้องแก้จนกว่าจะยืนยันว่า logic โมเดลดีขึ้นจริง

@@ -1,0 +1,80 @@
+ถ้าให้ AI ช่วยพัฒนา Win rate ควรให้ไฟล์เหล่านี้:
+
+### ไฟล์หลักที่ต้องให้
+
+1. `next_bar_prediction_engine.py`  
+   ไฟล์สำคัญที่สุด เพราะมี logic:
+
+   - สร้างโมเดล
+   - Train โมเดล
+   - เลือก Feature
+   - สร้าง prediction
+   - รันเปรียบเทียบโมเดล
+
+2. `footprint_ml_pipeline.py`  
+   ใช้ตรวจ:
+
+   - การสร้างแท่ง 5 นาที
+   - Footprint
+   - Delta
+   - Imbalance
+   - Candle pattern
+   - Label ว่าแท่งถัดไปขึ้นหรือลง
+   - Backtest และการนับถูก/ผิด
+
+3. `README.md`  
+   เพื่อให้ AI เข้าใจเป้าหมายของระบบ เช่น:
+
+   - Binary Option หมดอายุ 5 นาที
+   - ทุนและ payout
+   - Fixed stake
+   - Martingale
+   - วิธีวัด Win rate
+
+### ไฟล์ที่ให้เพิ่มเติมเมื่อเกี่ยวข้อง
+
+4. `backtest_app.py`  
+   ให้เมื่ออยากปรับ:
+
+   - UI
+   - ตัวเลือก Feature
+   - ตัวเลือกโมเดล
+   - ตารางแสดงผล
+   - ระบบเปรียบเทียบโมเดล
+
+5. ไฟล์ CSV ใน `data`  
+   ให้ AI ใช้ทดสอบจริง แต่ไม่จำเป็นต้องส่งทุกไฟล์พร้อมกัน ถ้าไฟล์ใหญ่มาก ให้ระบุชื่อไฟล์และช่วงเวลาแทน
+
+### Prompt ที่ควรใช้
+
+```text
+ช่วยพัฒนา win rate ของระบบทำนายแท่ง 5 นาทีถัดไป
+
+ให้ตรวจและแก้เฉพาะ:
+- next_bar_prediction_engine.py
+- footprint_ml_pipeline.py
+
+ใช้ backtest จากไฟล์:
+- data/XAUUSD_ticks_....csv
+
+เป้าหมาย:
+- ทาย UP/DOWN ของแท่งถัดไป
+- หมดอายุ 5 นาที
+- ห้ามใช้ข้อมูลอนาคต
+- ใช้ walk-forward validation
+- เปรียบเทียบผลก่อนและหลังแก้
+- รายงานจำนวน signal, ถูก, ผิด, win rate, coverage และ drawdown
+- ห้ามทำให้ผลดีขึ้นด้วยการ overfit ชุดข้อมูลเดียว
+- UI ไม่ต้องแก้จนกว่าจะยืนยันว่า logic โมเดลดีขึ้นจริง
+```
+
+สรุปสั้น ๆ:
+
+```text
+จำเป็นที่สุด:
+next_bar_prediction_engine.py
+footprint_ml_pipeline.py
+ไฟล์ CSV สำหรับ backtest
+```
+
+ส่วน `backtest_app.py` ยังไม่จำเป็นสำหรับการพัฒนา Win rate โดยตรงครับ.
